@@ -8,20 +8,13 @@ class ScheduledTasksModule extends Module {
   void binds(i) {
     i.addSingleton(ScheduledTasksRepository.new);
   }
-  //late ScheduledTasksListModule scheduledTasksListModule;
 
   ScheduledTasksModule() {}
-  //scheduledTasksListModule = ScheduledTasksListModule(scheduledTasksModule: this);
 
   @override
   void routes(r) {
-    r.module('/', module: ScheduledTasksListModule()); //module: scheduledTasksListModule, duration: Duration.zero);
+    r.module('/', module: ScheduledTasksListModule());
 
-    r.module(
-      '/create_or_edit',
-      module: CreateOrEditTaskModule(),
-      //CreateOrEditTaskModule(scheduledTasksModule: this, scheduledTasksListModule: scheduledTasksListModule),
-      //duration: Duration.zero,
-    );
+    r.module('/create_or_edit', module: CreateOrEditTaskModule());
   }
 }

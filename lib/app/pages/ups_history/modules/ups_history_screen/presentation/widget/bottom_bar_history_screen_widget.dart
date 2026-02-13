@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-//import 'package:treina_app/app/pages/filter_modal/presentation/filter_modal_widget.dart';
+import 'package:flutter_svg/svg.dart';
 
-class BottomBarScheduledTasks extends StatelessWidget {
-  final VoidCallback? onReturn;
-  final VoidCallback? onFilter;
-
-  const BottomBarScheduledTasks({super.key, required this.onReturn, required this.onFilter});
+class BottomBarHistoryScreen extends StatelessWidget {
+  const BottomBarHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +23,13 @@ class BottomBarScheduledTasks extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildBottomBarButton(
-                  iconPath: 'assets/icons/filter.svg',
-                  label: "Filtrar",
-                  onTap: () {
-                    onFilter?.call();
-                  },
-                ),
+                _buildBottomBarButton(iconPath: 'assets/icons/export.svg', label: "Exportar", onTap: () {}),
                 _builderDivider(),
-                _buildBottomBarButton(
-                  iconPath: 'assets/icons/plus.svg',
-                  label: "Nova Tarefa",
-                  onTap: () async {
-                    await Modular.to.pushNamed('/scheduled_tasks/create_or_edit');
-                    onReturn?.call();
-                  },
-                ),
+                _buildBottomBarButton(iconPath: 'assets/icons/trash_2.svg', label: "Limpar", onTap: () {}),
+                _builderDivider(),
+                _buildBottomBarButton(iconPath: 'assets/icons/filter.svg', label: "Filtrar", onTap: () {}),
+                _builderDivider(),
+                _buildBottomBarButton(iconPath: 'assets/icons/settings.svg', label: "Configurar", onTap: () {}),
               ],
             ),
           ),
@@ -52,6 +38,7 @@ class BottomBarScheduledTasks extends StatelessWidget {
     );
   }
 
+  //----------------------------------------------------------------------------
   //----------------------------------------------------------------------------
 
   Widget _buildBottomBarButton({required String iconPath, required String label, required Function() onTap}) {
@@ -74,8 +61,9 @@ class BottomBarScheduledTasks extends StatelessWidget {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------------------------------------------------------------
 
   Widget _builderDivider() {
-    return Container(width: 1.5.sp, height: 24.sp, color: const Color(0xFF163134));
+    return Container(width: 1.5.sp, height: 24.sp, color: Color(0xFF163134));
   }
 }

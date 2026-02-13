@@ -64,8 +64,6 @@ class _DrawerComponentState extends State<DrawerComponent> {
                         ListTileModel(title: 'Lista de Tarefas Agendadas', route: '/scheduled_tasks'),
                       ],
                       onTap: (currentRoute) {
-                        print('Drawer clicado, rota: $currentRoute');
-                        print('Rota atual antes =${Modular.to.path}');
                         controllerPanel.collapse();
                         Modular.to.pop();
                         Modular.to.pushNamed(currentRoute);
@@ -73,7 +71,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                       level: 2,
                     ),
                     ListTileModel(title: 'Histórico de Eventos e Falhas', route: '/events_and_failures/'),
-                    ListTileModel(key: const Key("drawer_historico-ups"), title: 'Histórico de UPS', route: '/history_screen/'),
+                    ListTileModel(key: const Key("drawer_historico-ups"), title: 'Histórico de UPS', route: '/history_screen'),
                     ListTileModel(title: 'Histórico de Testes de Autonomia', route: '/autonomy_tests_history/'),
                   ],
                 ),
