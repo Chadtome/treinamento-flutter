@@ -1,27 +1,19 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:treina_app/app/pages/schedules_tasks/modules/scheduled_tasks_list/filters/scheduled_task_filter.dart';
+
+class ActiveFilterItem {
+  final String label;
+  final VoidCallback onRemove;
+
+  ActiveFilterItem({required this.label, required this.onRemove});
+}
 
 class ActiveFiltersBar extends StatefulWidget {
-  final ScheduledTaskFilter filter;
-  final VoidCallback? onClear;
-  final VoidCallback? onRemoveEvent;
-  final VoidCallback? onRemoveFrequency;
-  final VoidCallback? onRemoveDate;
-  final VoidCallback? onRemoveTime;
+  final List<ActiveFilterItem> filters;
 
-  const ActiveFiltersBar({
-    super.key,
-    required this.filter,
-    this.onClear,
-    this.onRemoveEvent,
-    this.onRemoveFrequency,
-    this.onRemoveDate,
-    this.onRemoveTime,
-  });
+  const ActiveFiltersBar({super.key, required this.filters});
 
   @override
   State<ActiveFiltersBar> createState() => _ActiveFiltersBarState();
@@ -30,6 +22,7 @@ class ActiveFiltersBar extends StatefulWidget {
 class _ActiveFiltersBarState extends State<ActiveFiltersBar> {
   final ScrollController _scrollController = ScrollController();
   Timer? _scrollTimer;
+
   static const double _scrollStep = 12;
   static const Duration _scrollInterval = Duration(milliseconds: 16);
 
@@ -65,10 +58,9 @@ class _ActiveFiltersBarState extends State<ActiveFiltersBar> {
       width: 1.sw,
       padding: EdgeInsets.all(8.sp),
       margin: EdgeInsets.only(top: 16.sp, bottom: 16.sp),
-      key: const Key('filter_active_filters_bar'),
       child: Row(
         children: [
-          //---------------------seta para esquerda-----------------------------
+          //--------------------- seta esquerda ---------------------
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 1.sp),
             child: GestureDetector(
@@ -82,9 +74,9 @@ class _ActiveFiltersBarState extends State<ActiveFiltersBar> {
             ),
           ),
 
-          //---------------------filtros ativos---------------------------------
+          //--------------------- filtros ativos ---------------------
           Expanded(
-            child: widget.filter.isEmpty
+            child: widget.filters.isEmpty
                 ? Center(
                     child: Text(
                       'Nenhuma filtragem',
@@ -99,11 +91,11 @@ class _ActiveFiltersBarState extends State<ActiveFiltersBar> {
                 : SingleChildScrollView(
                     controller: _scrollController,
                     scrollDirection: Axis.horizontal,
-                    child: Row(children: [_buildEventChip(context), _buildFrequencyChip(context), _buildDateChip(context), _buildTimeChip(context)]),
+                    child: Row(children: widget.filters.map((filter) => _buildChip(context, filter.label, filter.onRemove)).toList()),
                   ),
           ),
 
-          //---------------------seta para direita----------------------------
+          //--------------------- seta direita ---------------------
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 1.sp),
             child: GestureDetector(
@@ -122,103 +114,30 @@ class _ActiveFiltersBarState extends State<ActiveFiltersBar> {
   }
 
   //----------------------------------------------------------------------------
-
   Widget _buildChip(BuildContext context, String text, VoidCallback onRemove) {
     return Container(
       margin: EdgeInsets.only(right: 8.sp),
       padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 6.sp),
       decoration: BoxDecoration(
-        color: Color(0xFF163134),
+        color: const Color(0xFF163134),
         borderRadius: BorderRadius.circular(32.sp),
-        border: Border.all(color: Color(0xFFFFFFFF), width: 1),
+        border: Border.all(color: const Color(0xFFFFFFFF), width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             text,
-            style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 12.sp, fontWeight: FontWeight.w400),
+            style: TextStyle(color: const Color(0xFFFFFFFF), fontSize: 12.sp, fontWeight: FontWeight.w400),
           ),
           SizedBox(width: 8.sp),
           GestureDetector(
             onTap: onRemove,
-            child: Icon(Icons.close, size: 14.sp, color: Color(0xFFFFFFFF)),
+            child: Icon(Icons.close, size: 14.sp, color: const Color(0xFFFFFFFF)),
           ),
         ],
       ),
     );
-  }
-
-  //-----------------------------CHIP EVENTOS-----------------------------------
-
-  Widget _buildEventChip(BuildContext context) {
-    if (widget.filter.event == null || widget.filter.event!.isEmpty) {
-      return const SizedBox.shrink();
-    }
-    return _buildChip(context, widget.filter.event!, widget.onRemoveEvent ?? () {});
-  }
-
-  //-----------------------------CHIP FREQUENCIA--------------------------------
-
-  Widget _buildFrequencyChip(BuildContext context) {
-    if (widget.filter.frequency == null || widget.filter.frequency!.isEmpty) {
-      return const SizedBox.shrink();
-    }
-    return _buildChip(context, widget.filter.frequency!, widget.onRemoveFrequency ?? () {});
-  }
-
-  //-----------------------------CHIP DATAS-------------------------------------
-
-  Widget _buildDateChip(BuildContext context) {
-    final start = widget.filter.startDate;
-    final end = widget.filter.endDate;
-
-    if (start == null && end == null) {
-      return const SizedBox.shrink();
-    }
-
-    String label;
-
-    if (start != null && end != null) {
-      label = '${_formatDate(start)} a ${_formatDate(end)}';
-    } else if (start != null) {
-      label = '>${_formatDate(start)}';
-    } else {
-      label = '<${_formatDate(end!)}';
-    }
-    return _buildChip(context, label, widget.onRemoveDate ?? () {});
-  }
-
-  String _formatDate(DateTime date) {
-    return '${date.day.toString().padLeft(2, '0')}/'
-        '${date.month.toString().padLeft(2, '0')}/'
-        '${date.year}';
-  }
-
-  //-------------------------CHIP HORA------------------------------------------
-
-  Widget _buildTimeChip(BuildContext context) {
-    final start = widget.filter.startTime;
-    final end = widget.filter.endTime;
-
-    if (start == null && end == null) {
-      return const SizedBox.shrink();
-    }
-
-    String label;
-
-    if (start != null && end != null) {
-      label = '${_formatTime(start)} a ${_formatTime(end)}';
-    } else if (start != null) {
-      label = '>${_formatTime(start)}';
-    } else {
-      label = '<${_formatTime(end!)}';
-    }
-    return _buildChip(context, label, widget.onRemoveTime ?? () {});
-  }
-
-  String _formatTime(TimeOfDay time) {
-    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
   }
 
   //----------------------------------------------------------------------------
@@ -246,6 +165,4 @@ class _ActiveFiltersBarState extends State<ActiveFiltersBar> {
     _scrollTimer?.cancel();
     _scrollTimer = null;
   }
-
-  //----------------------------------------------------------------------------
 }
