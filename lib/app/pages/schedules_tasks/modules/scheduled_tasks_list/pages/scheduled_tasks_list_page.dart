@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:treina_app/app/pages/filters/presentation/filter_modal_widget.dart';
-import 'package:treina_app/app/pages/filters/presentation/widgets/active_filter_bar_widget.dart';
+import 'package:treina_app/app/pages/filters/presentation/widgets/active_filter_bar_scheduled_tasks.dart';
 import 'package:treina_app/app/pages/schedules_tasks/domain/models/scheduled_task_model.dart';
 import 'package:treina_app/app/pages/schedules_tasks/domain/repositories/scheduled_tasks_repository.dart';
 import 'package:treina_app/app/pages/schedules_tasks/modules/scheduled_tasks_list/filters/scheduled_task_filter.dart';
 import 'package:treina_app/app/pages/schedules_tasks/modules/scheduled_tasks_list/widgets/bottom_bar_scheduled_tasks_widget.dart';
 import 'package:treina_app/app/pages/schedules_tasks/modules/scheduled_tasks_list/widgets/scheduled_task_card_widget.dart';
 import 'package:treina_app/app/presentation/theme/widgets/toast_widget.dart';
+import 'package:treina_app/app/presentation/widgets/active_filters_bar_widget.dart';
 import 'package:treina_app/app/presentation/widgets/default_app_bar.dart';
 
 class ScheduledTasksListPage extends StatefulWidget {
@@ -47,11 +48,19 @@ class _ScheduledTasksListPage extends State<ScheduledTasksListPage> {
       body: Column(
         children: [
           ActiveFiltersBar(
-            filter: _currentFilter,
-            onRemoveEvent: _removeEventFilter,
-            onRemoveFrequency: _removeFrequencyFilter,
-            onRemoveDate: _removeDateFilter,
-            onRemoveTime: _removeTimeFilter,
+            filters: ScheduledTaskActiveFiltersBuilder.build(
+              context: context,
+              filter: _currentFilter,
+              onRemoveEvent: _removeEventFilter,
+              onRemoveFrequency: _removeFrequencyFilter,
+              onRemoveDate: _removeDateFilter,
+              onRemoveTime: _removeTimeFilter,
+            ),
+            // filter: _currentFilter,
+            // onRemoveEvent: _removeEventFilter,
+            // onRemoveFrequency: _removeFrequencyFilter,
+            // onRemoveDate: _removeDateFilter,
+            // onRemoveTime: _removeTimeFilter,
           ),
           Expanded(child: _tasks.isEmpty ? _buildEmptyState() : _buildTaskList()),
         ],
@@ -236,6 +245,4 @@ class _ScheduledTasksListPage extends State<ScheduledTasksListPage> {
     });
     _applyFilter(_currentFilter);
   }
-
-  //----------------------------------------------------------------------------
 }
