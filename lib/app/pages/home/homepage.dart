@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:treina_app/app/pages/home/presentation/widget/app_state.dart';
 import 'package:treina_app/app/pages/home/presentation/widget/drawer/drawer_component_widget.dart';
 import 'package:treina_app/app/pages/home/presentation/widget/home_appbar.dart';
 import 'package:treina_app/app/pages/home/presentation/widget/status_monitoring_area.dart';
+//import 'package:treina_app/modules/domain/models/current_status_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +14,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   late final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  //----------------------------------------------------------------------------
+
+  final currentStatus = AppState.currentStatus;
+
+  //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +26,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: HomeAppBar(scaffoldKey: _scaffoldKey),
       drawer: const DrawerComponent(),
-      body: Stack(children: [const Positioned.fill(child: StatusMonitoringArea())]),
+      body: Stack(
+        children: [Positioned.fill(child: StatusMonitoringArea(status: currentStatus))],
+      ),
     );
   }
 }

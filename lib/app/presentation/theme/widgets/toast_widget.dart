@@ -24,7 +24,7 @@ class Toast {
     } else if (kind == ButtonKind.error) {
       kindColor = const Color(0xFFD72736);
     } else if (kind == ButtonKind.alert) {
-      kindColor = const Color(0xFFEAB42A);
+      kindColor = const Color(0xFFC7AC3E);
     }
 
     double toastHeight = 120.sp;

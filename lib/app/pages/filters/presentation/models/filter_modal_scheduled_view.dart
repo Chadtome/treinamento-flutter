@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:treina_app/app/pages/filters/controllers/filter_modal_controller.dart';
+import 'package:treina_app/app/pages/filters/controllers/filter_modal_scheduled_controller.dart';
 import 'package:treina_app/app/pages/filters/shared/widget/dropdown_like_input/dropdown_like_input.dart';
 import 'package:treina_app/app/pages/schedules_tasks/modules/create_or_edit_task/widgets/choose_all_events_controller.dart';
 
@@ -44,4 +44,6 @@ class FilterModalView extends StatelessWidget {
       ],
     );
   }
+
+  //----------------------------------------------------------------------------
 }

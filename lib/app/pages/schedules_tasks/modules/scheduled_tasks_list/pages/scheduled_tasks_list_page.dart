@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:treina_app/app/pages/filters/presentation/filter_modal_widget.dart';
+import 'package:treina_app/app/pages/filters/presentation/filter_modal_scheduled_widget.dart';
 import 'package:treina_app/app/pages/filters/presentation/widgets/active_filter_bar_scheduled_tasks.dart';
 import 'package:treina_app/app/pages/schedules_tasks/domain/models/scheduled_task_model.dart';
 import 'package:treina_app/app/pages/schedules_tasks/domain/repositories/scheduled_tasks_repository.dart';
@@ -56,11 +56,6 @@ class _ScheduledTasksListPage extends State<ScheduledTasksListPage> {
               onRemoveDate: _removeDateFilter,
               onRemoveTime: _removeTimeFilter,
             ),
-            // filter: _currentFilter,
-            // onRemoveEvent: _removeEventFilter,
-            // onRemoveFrequency: _removeFrequencyFilter,
-            // onRemoveDate: _removeDateFilter,
-            // onRemoveTime: _removeTimeFilter,
           ),
           Expanded(child: _tasks.isEmpty ? _buildEmptyState() : _buildTaskList()),
         ],
@@ -149,7 +144,6 @@ class _ScheduledTasksListPage extends State<ScheduledTasksListPage> {
     if (result == null) {
       setState(() {
         _currentFilter.clear();
-        //_loadTasks();
       });
       _refreshList();
       return;

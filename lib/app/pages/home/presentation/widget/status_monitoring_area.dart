@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-//import 'package:treina_app/app/pages/home/presentation/blocs/status_monitoring_states.dart';
 import 'package:treina_app/modules/domain/models/current_status_model.dart';
 import 'package:treina_app/modules/domain/models/history_item_model.dart';
 
 class StatusMonitoringArea extends StatefulWidget {
-  const StatusMonitoringArea({super.key});
+  final CurrentStatus status;
+  //final Function(CurrentStatus)? onStatusGenerated;
+
+  const StatusMonitoringArea({super.key, required this.status});
 
   @override
   State<StatusMonitoringArea> createState() => _StatusMonitoringAreaState();
@@ -15,9 +17,6 @@ const Color dangerColor = Color(0xFFD72736); // variável globar para testar
 const Color warningColor = Color(0xFFEAB42A); // variável globar para testar
 
 class _StatusMonitoringAreaState extends State<StatusMonitoringArea> {
-  // Color dangerColor = const Color(0xFFd72736);
-  // Color warningColor = const Color(0xFFEAB42A);
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,7 +39,7 @@ class _StatusMonitoringAreaState extends State<StatusMonitoringArea> {
               ),
             ),
             SizedBox(height: 16),
-            _buildContent(context),
+            _buildContent(context, widget.status),
           ],
         ),
       ),
@@ -111,8 +110,6 @@ Widget _statusCard({
           height: 60,
           decoration: BoxDecoration(
             color: severity == Severity.danger || severity == Severity.alert ? severityColor.withOpacity(0.2) : colorScheme.primary.withOpacity(0.2),
-            // const Color.fromRGBO(0, 178, 107, 0.2),
-            //color: severityColor.withOpacity(0.2), // testando apenas um estado
             shape: BoxShape.circle,
           ),
           child: Center(
@@ -148,19 +145,7 @@ Widget _statusCard({
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
-Widget _buildContent(BuildContext context) {
-  // if (state is StatusMonitoringLoadedState) {
-  //   CurrentStatus status = state.currentStatus;
-  final status = CurrentStatus(
-    inputVoltage: 128,
-    outputVoltage: 120,
-    power: 70,
-    frequency: 58,
-    connection: 'S',
-    temperature: 75,
-    battery: 10,
-  ); // valor para teste
-
+Widget _buildContent(BuildContext context, CurrentStatus status) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

@@ -123,6 +123,7 @@ class FilterModalController extends ChangeNotifier {
     endDateController.dispose();
     startTimeController.dispose();
     endTimeController.dispose();
+
     super.dispose();
   }
 

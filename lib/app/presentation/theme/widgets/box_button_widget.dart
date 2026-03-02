@@ -32,7 +32,7 @@ class ABoxButton extends StatelessWidget {
     } else if (kind == ButtonKind.error) {
       return const Color(0xffD72736);
     } else if (kind == ButtonKind.alert) {
-      return const Color(0xffEAB42A);
+      return const Color(0xFFC7AC3E);
     }
     return Theme.of(context).colorScheme.primary;
     //return DesignSystem.of(context).primary;

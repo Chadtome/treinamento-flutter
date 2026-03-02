@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:treina_app/app/pages/filters/controllers/filter_modal_controller.dart';
-import 'package:treina_app/app/pages/filters/presentation/models/filter_modal_view.dart';
+import 'package:treina_app/app/pages/filters/controllers/filter_modal_history_controller.dart';
+import 'package:treina_app/app/pages/filters/presentation/models/filter_modal_history_view.dart';
 import 'package:treina_app/app/pages/filters/presentation/widgets/filter_date_section.dart';
 import 'package:treina_app/app/pages/filters/presentation/widgets/filter_time_section.dart';
-import 'package:treina_app/app/pages/schedules_tasks/modules/scheduled_tasks_list/filters/scheduled_task_filter.dart';
+import 'package:treina_app/app/pages/ups_history/modules/filters/ups_history_filter.dart';
 import 'package:treina_app/app/presentation/theme/widgets/box_button_widget.dart';
 
-class FilterModal extends StatefulWidget {
-  final ScheduledTaskFilter initialFilter;
+class HistoryFilterModal extends StatefulWidget {
+  final HistoryFilter initialFilter;
 
-  const FilterModal({super.key, required this.initialFilter});
+  const HistoryFilterModal({super.key, required this.initialFilter});
 
   @override
-  State<FilterModal> createState() => _FilterModalState();
+  State<HistoryFilterModal> createState() => _HistoryFilterModalState();
 
   Future show({required BuildContext context}) async {
     return await showDialog(barrierDismissible: true, context: context, builder: (_) => this);
   }
 }
 
-class _FilterModalState extends State<FilterModal> {
+class _HistoryFilterModalState extends State<HistoryFilterModal> {
   late BuildContext context;
 
-  late FilterModalController controller;
+  late HistoryFilterModalController controller;
 
   //----------------------------------------------------------------------------
 
   @override
   void initState() {
     super.initState();
-    controller = FilterModalController(initialFilter: widget.initialFilter);
+    controller = HistoryFilterModalController(initialFilter: widget.initialFilter);
   }
 
   //----------------------------------------------------------------------------
@@ -56,7 +56,6 @@ class _FilterModalState extends State<FilterModal> {
         children: [
           GestureDetector(
             onTap: () async {
-              //await widget.onCancel();
               Navigator.of(context).pop(null);
             },
             child: Container(width: double.infinity, height: double.infinity, color: Colors.transparent),
@@ -126,12 +125,12 @@ class _FilterModalState extends State<FilterModal> {
                   AnimatedBuilder(
                     animation: controller,
                     builder: (_, __) {
-                      return FilterModalView(
-                        selectedEvent: controller.editingFilter.event,
-                        selectedFrequency: controller.editingFilter.frequency,
-                        onEventChanged: controller.onEventChanged,
-                        onFrequencyChanged: controller.onFrequencyChanged,
+                      return HistoryModalView(
                         controller: controller,
+                        selectedStatus: controller.editingFilter.status,
+                        selectedActionArea: controller.editingFilter.actionArea,
+                        onStatusChanged: controller.onStatusChanged,
+                        onActionAreaChanged: controller.onActionAreaChanged,
                       );
                     },
                   ),
@@ -144,7 +143,6 @@ class _FilterModalState extends State<FilterModal> {
                     children: [
                       ABoxButton.outline(
                         onClick: () async {
-                          //await widget.onCancel();
                           Navigator.of(context).pop(null);
                         },
                         key: const Key("filter_modal_cancel_button"),
@@ -159,7 +157,6 @@ class _FilterModalState extends State<FilterModal> {
                           ABoxButton.outline(
                             onClick: () async {
                               controller.clear();
-                              //widget.onTapClear();
                               Navigator.of(context).pop(null);
                             },
                             text: "Limpar Filtro",

@@ -8,6 +8,7 @@ class UpsHistoryItem {
   String connection;
   double temperature;
   double battery;
+  DateTime? dateTime;
 
   UpsHistoryItem({
     required this.inputVoltage,
@@ -17,6 +18,7 @@ class UpsHistoryItem {
     required this.connection,
     required this.temperature,
     required this.battery,
+    this.dateTime,
   });
 
   Severity InputVoltageSeverity() {

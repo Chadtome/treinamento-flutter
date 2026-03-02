@@ -7,13 +7,17 @@ import 'package:treina_app/app/app_module.dart';
 import 'package:treina_app/app/presentation/theme/theme_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:treina_app/modules/history_service.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  HistoryService().start();
+
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeController(),
       child: ModularApp(module: AppModule(), child: const AppWidget()),
-      //const MyApp()
     ),
   );
 }
