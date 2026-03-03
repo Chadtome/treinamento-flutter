@@ -21,7 +21,7 @@ class HistoryFilter {
     actionArea = null;
   }
 
-  HistoryFilter copyWith({DateTime? starDate, DateTime? endDate, TimeOfDay? startTime, TimeOfDay? endTime, String? status, String? actionArea}) {
+  HistoryFilter copyWith({DateTime? startDate, DateTime? endDate, TimeOfDay? startTime, TimeOfDay? endTime, String? status, String? actionArea}) {
     return HistoryFilter(
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
