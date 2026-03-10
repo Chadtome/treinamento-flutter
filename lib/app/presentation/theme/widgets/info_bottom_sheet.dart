@@ -71,6 +71,7 @@ class InfoBottomSheet extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerRight,
               child: TextButton(
+                key: const Key("botao_ok-info"),
                 onPressed: () => Modular.to.pop(),
                 style: TextButton.styleFrom(
                   backgroundColor: theme.colorScheme.primary,

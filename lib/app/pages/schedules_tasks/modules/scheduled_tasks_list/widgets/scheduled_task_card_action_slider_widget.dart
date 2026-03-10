@@ -32,6 +32,7 @@ class ScheduledTaskCardActionSlider extends StatelessWidget {
                 children: [
                   //---------------Botão de editar tarefas----------------------
                   _buildActionButton(
+                    key: const Key("botao-editar"),
                     icon: Icons.edit_outlined,
                     color: const Color(0xff163134),
                     onTap: () {
@@ -42,6 +43,7 @@ class ScheduledTaskCardActionSlider extends StatelessWidget {
 
                   //---------------Botão de deletar tarefas---------------------
                   _buildActionButton(
+                    key: const Key("botao-apagar"),
                     icon: Icons.delete_outline,
                     color: const Color(0xffD72736),
                     onTap: () {
@@ -59,8 +61,9 @@ class ScheduledTaskCardActionSlider extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton({required IconData icon, required Color color, required VoidCallback onTap}) {
+  Widget _buildActionButton({Key? key, required IconData icon, required Color color, required VoidCallback onTap}) {
     return InkWell(
+      key: key,
       onTap: onTap,
       child: Container(
         width: 40.sp,

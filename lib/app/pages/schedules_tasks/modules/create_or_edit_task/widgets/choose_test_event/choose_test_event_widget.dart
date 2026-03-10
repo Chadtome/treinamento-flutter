@@ -65,12 +65,14 @@ class _ChooseTestEventState extends State<ChooseTestEvent> {
                   child: Column(
                     children: [
                       SelectionItem(
+                        key: const Key("even-bat-10"),
                         label: testEventOptions[0],
                         selected: widget.selectedValue == testEventOptions[0],
                         onChanged: (_) => widget.onChanged(testEventOptions[0]),
                       ),
                       SizedBox(height: 8.sp),
                       SelectionItem(
+                        key: const Key("even-bat-aut"),
                         label: testEventOptions[1],
                         selected: widget.selectedValue == testEventOptions[1],
                         onChanged: (_) => widget.onChanged(testEventOptions[1]),
@@ -83,6 +85,7 @@ class _ChooseTestEventState extends State<ChooseTestEvent> {
                   child: Column(
                     children: [
                       SelectionItem(
+                        key: const Key("even-bat-min"),
                         label: testEventOptions[2],
                         selected: widget.selectedValue == testEventOptions[2],
                         onChanged: (_) => widget.onChanged(testEventOptions[2]),

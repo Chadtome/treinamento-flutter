@@ -57,11 +57,12 @@ class _DrawerComponentState extends State<DrawerComponent> {
                   },
                   tabList: [
                     ListTileModel.asDropdown(
+                      key: const Key("drawer_agendamento-tarefas"),
                       title: 'Agendamento de Tarefas',
                       route: '/scheduled_tasks',
                       tabList: [
-                        ListTileModel(title: 'Agendar Tarefas', route: '/scheduled_tasks/create_or_edit'),
-                        ListTileModel(title: 'Lista de Tarefas Agendadas', route: '/scheduled_tasks'),
+                        ListTileModel(key: const Key("agendar-tarefas"), title: 'Agendar Tarefas', route: '/scheduled_tasks/create_or_edit'),
+                        ListTileModel(key: const Key("lista-tarefas-agendadas"), title: 'Lista de Tarefas Agendadas', route: '/scheduled_tasks'),
                       ],
                       onTap: (currentRoute) {
                         controllerPanel.collapse();

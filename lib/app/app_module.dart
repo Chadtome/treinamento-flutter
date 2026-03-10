@@ -12,12 +12,12 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
-    r.redirect('/', to: '/home');
+    r.redirect('/', to: '/home/');
 
     r.module('/home', module: HomeModule());
 
-    r.module('/scheduled_tasks', module: ScheduledTasksModule());
+    r.module('/scheduled_tasks/', module: ScheduledTasksModule());
 
-    r.module('/history_screen', module: UpsHistoryScreenModule());
+    r.module('/history_screen/', module: UpsHistoryScreenModule());
   }
 }

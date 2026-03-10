@@ -32,6 +32,7 @@ class ChooseEvent extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SelectionItem(
+                        key: const Key("even-desl-pc"),
                         label: eventOptions[0],
                         selected: selectedValue == eventOptions[0],
                         onChanged: (_) => onChanged(eventOptions[0]),
@@ -40,6 +41,7 @@ class ChooseEvent extends StatelessWidget {
                     SizedBox(width: 16.sp),
                     Expanded(
                       child: SelectionItem(
+                        key: const Key("ativa-bipe"),
                         label: eventOptions[3],
                         selected: selectedValue == eventOptions[3],
                         onChanged: (_) => onChanged(eventOptions[3]),
@@ -56,6 +58,7 @@ class ChooseEvent extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SelectionItem(
+                        key: const Key("even-desl-pc-ups"),
                         label: eventOptions[1],
                         selected: selectedValue == eventOptions[1],
                         onChanged: (_) => onChanged(eventOptions[1]),
@@ -64,6 +67,7 @@ class ChooseEvent extends StatelessWidget {
                     SizedBox(width: 16.sp),
                     Expanded(
                       child: SelectionItem(
+                        key: const Key("desa-bipe"),
                         label: eventOptions[4],
                         selected: selectedValue == eventOptions[4],
                         onChanged: (_) => onChanged(eventOptions[4]),
@@ -80,6 +84,7 @@ class ChooseEvent extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SelectionItem(
+                        key: const Key("even-desl-pc-rein"),
                         label: eventOptions[2],
                         selected: selectedValue == eventOptions[2],
                         onChanged: (_) => onChanged(eventOptions[2]),

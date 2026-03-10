@@ -25,6 +25,7 @@ class ChooseFrequency extends StatelessWidget {
               children: [
                 Expanded(
                   child: SelectionItem(
+                    key: const Key("freq-imediatamente"),
                     label: frequencyOptions[0],
                     selected: selectedValue == frequencyOptions[0],
                     onChanged: (_) => onChanged(frequencyOptions[0]),
@@ -33,6 +34,7 @@ class ChooseFrequency extends StatelessWidget {
                 SizedBox(width: 16.sp),
                 Expanded(
                   child: SelectionItem(
+                    key: const Key("freq-semana"),
                     label: frequencyOptions[3],
                     selected: selectedValue == frequencyOptions[3],
                     onChanged: (_) => onChanged(frequencyOptions[3]),
@@ -45,6 +47,7 @@ class ChooseFrequency extends StatelessWidget {
               children: [
                 Expanded(
                   child: SelectionItem(
+                    key: const Key("freq-uma-vez"),
                     label: frequencyOptions[1],
                     selected: selectedValue == frequencyOptions[1],
                     onChanged: (_) => onChanged(frequencyOptions[1]),
@@ -53,6 +56,7 @@ class ChooseFrequency extends StatelessWidget {
                 SizedBox(width: 16.sp),
                 Expanded(
                   child: SelectionItem(
+                    key: const Key("freq-mensal"),
                     label: frequencyOptions[4],
                     selected: selectedValue == frequencyOptions[4],
                     onChanged: (_) => onChanged(frequencyOptions[4]),
@@ -65,6 +69,7 @@ class ChooseFrequency extends StatelessWidget {
               children: [
                 Expanded(
                   child: SelectionItem(
+                    key: const Key("freq-dia"),
                     label: frequencyOptions[2],
                     selected: selectedValue == frequencyOptions[2],
                     onChanged: (_) => onChanged(frequencyOptions[2]),

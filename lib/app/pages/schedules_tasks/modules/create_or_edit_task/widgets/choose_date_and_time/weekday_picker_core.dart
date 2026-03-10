@@ -50,6 +50,7 @@ class _WeekdayPickerCoreState extends State<WeekdayPickerCore> {
                 final index = entry.key;
                 final weekday = entry.value;
                 return WeekdayPickerButton(
+                  key: Key('weekday_$index'),
                   weekday: weekday.substring(0, 3),
                   isSelected: index == _selected,
                   onPressed: () {

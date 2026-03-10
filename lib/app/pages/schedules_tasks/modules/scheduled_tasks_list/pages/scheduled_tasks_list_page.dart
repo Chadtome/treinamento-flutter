@@ -32,7 +32,6 @@ class _ScheduledTasksListPage extends State<ScheduledTasksListPage> {
     super.initState();
     _repository = Modular.get<ScheduledTasksRepository>();
     _refreshList();
-    //_loadTasks();
   }
 
   @override

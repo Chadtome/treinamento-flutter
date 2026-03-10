@@ -107,6 +107,7 @@ class _ChooseDataAndTimeState extends State<ChooseDataAndTime> {
               child: IgnorePointer(
                 ignoring: !dateActive,
                 child: GestureDetector(
+                  key: const Key("campo_data"),
                   onTap: () async {
                     if (isWeekDay) {
                       final result = await showDialog(
@@ -147,6 +148,7 @@ class _ChooseDataAndTimeState extends State<ChooseDataAndTime> {
               child: IgnorePointer(
                 ignoring: !timeActive,
                 child: GestureDetector(
+                  key: const Key("campo_hora"),
                   onTap: () async {
                     final time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
 

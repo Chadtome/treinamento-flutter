@@ -29,6 +29,7 @@ class BottomBarScheduledTasks extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _buildBottomBarButton(
+                  key: const Key("botao_filtrar"),
                   iconPath: 'assets/icons/filter.svg',
                   label: "Filtrar",
                   onTap: () {
@@ -37,6 +38,7 @@ class BottomBarScheduledTasks extends StatelessWidget {
                 ),
                 _builderDivider(),
                 _buildBottomBarButton(
+                  key: const Key("botao_nova-tarefa"),
                   iconPath: 'assets/icons/plus.svg',
                   label: "Nova Tarefa",
                   onTap: () async {
@@ -54,9 +56,10 @@ class BottomBarScheduledTasks extends StatelessWidget {
 
   //----------------------------------------------------------------------------
 
-  Widget _buildBottomBarButton({required String iconPath, required String label, required Function() onTap}) {
+  Widget _buildBottomBarButton({Key? key, required String iconPath, required String label, required Function() onTap}) {
     return Expanded(
       child: InkWell(
+        key: key,
         onTap: onTap,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

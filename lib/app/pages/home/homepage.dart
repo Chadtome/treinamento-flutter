@@ -3,6 +3,7 @@ import 'package:treina_app/app/pages/home/presentation/widget/app_state.dart';
 import 'package:treina_app/app/pages/home/presentation/widget/drawer/drawer_component_widget.dart';
 import 'package:treina_app/app/pages/home/presentation/widget/home_appbar.dart';
 import 'package:treina_app/app/pages/home/presentation/widget/status_monitoring_area.dart';
+//import 'package:treina_app/debug/design_overlay.dart';
 //import 'package:treina_app/modules/domain/models/current_status_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +22,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
+    //---------------------TESTE OVERLAY FIGMA - VISUAL ------------------------
+    // return DesignOverlay(
+    //   designImage: 'assets/design/home_figma.png',
+    //   child: Scaffold(
+    //     key: _scaffoldKey,
+    //     backgroundColor: Theme.of(context).colorScheme.background,
+    //     appBar: HomeAppBar(scaffoldKey: _scaffoldKey),
+    //     drawer: const DrawerComponent(),
+    //     body: Stack(
+    //       children: [Positioned.fill(child: StatusMonitoringArea(status: currentStatus))],
+    //     ),
+    //   ),
+    // );
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.background,

@@ -33,7 +33,8 @@ class ListTileModel {
     child,
     int level = 1,
   }) : child = DrawerExpansionWidget(
-         expansionKey: Key(title),
+         expansionKey: key,
+         //expansionKey: Key(title),
          title: title,
          titleRoute: route,
          level: level,
@@ -226,17 +227,15 @@ class _DrawerExpansionWidgetState extends State<DrawerExpansionWidget> {
   }
 
   Widget _buildTitle() {
-    //final design = DesignSystem.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     Color? color = widget.isSelected || _isOpen && widget.level == 1 ? colorScheme.primary : colorScheme.onSurface;
-    // Color(0xFFFFFFFF) : Colors.black;
 
     return GestureDetector(
       key: widget.expansionKey,
-      onTap: widget.titleRoute != null
+      onTap: widget.tabList.isEmpty && widget.titleRoute != null
           ? () {
-              widget.onTap('${widget.titleRoute}');
+              widget.onTap(widget.titleRoute!);
             }
           : null,
       child: Padding(
